@@ -1,6 +1,9 @@
 package christmas.view;
 
+import static christmas.constant.ExceptionConstant.INPUT_IS_ESSENTIAL;
+
 import camp.nextstep.edu.missionutils.Console;
+import java.util.regex.Pattern;
 
 public class InputView {
 
@@ -10,18 +13,16 @@ public class InputView {
             + "(e.g. 해산물파스타-2,레드와인-1,초코케이스-1)";
 
     public String inputVisitDate() {
-        System.out.println(REQUEST_VISIT_DATE);
-        String visitDate = getUserInput();
-        return visitDate;
+        return printMessageAndGetInput(REQUEST_VISIT_DATE);
     }
 
     public String inputMenuAndAmount() {
-        System.out.println(REQUEST_MENU_AND_AMOUNT);
-        String menuAndAmount = getUserInput();
-        return menuAndAmount;
+        return printMessageAndGetInput(REQUEST_MENU_AND_AMOUNT);
     }
 
-    private String getUserInput() {
-        return Console.readLine();
+    private String printMessageAndGetInput(String message) {
+        System.out.println(message);
+        String userInput = Console.readLine();
+        return userInput;
     }
 }
