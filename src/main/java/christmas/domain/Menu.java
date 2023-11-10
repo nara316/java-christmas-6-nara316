@@ -12,8 +12,8 @@ public class Menu {
     private final String name;
 
     private Menu(String name) {
-        validateContainsMenuConstant();
         this.name = name;
+        validateContainsMenuConstant();
     }
 
     public static Menu from(String name) {
