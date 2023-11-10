@@ -6,6 +6,9 @@ import static christmas.constant.StringConstant.DIVISION_MENU_AND_QUANTITY;
 import static christmas.constant.StringConstant.DIVISION_ORDERS;
 import static christmas.converter.StringConverter.strToInt;
 
+import christmas.constant.menu.Appetizer;
+import christmas.constant.menu.Drink;
+import christmas.constant.menu.MainDish;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -52,5 +55,19 @@ public class Orders {
         if (isDuplicated) {
             throw new IllegalArgumentException(WRONG_ORDER.getMessage());
         }
+    }
+
+    private void validateOrderOnlyDrink(List<Order> orders) {
+        boolean isOnlyDrink = orders.stream()
+                .anyMatch(order -> checkOnlyDrink(order.getMenu().getName()));
+
+        if (!isOnlyDrink) {
+            throw new IllegalArgumentException(WRONG_ORDER.getMessage());
+        }
+    }
+
+    private boolean checkOnlyDrink(String name) {
+        return Appetizer.isContainMenu(name) ||
+                Drink.isContainMenu(name) || MainDish.isContainMenu(name);
     }
 }
