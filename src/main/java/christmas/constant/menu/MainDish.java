@@ -1,5 +1,7 @@
 package christmas.constant.menu;
 
+import java.util.Arrays;
+
 public enum MainDish {
 
     T_BONE_STEAK("티본스테이크", 55_000),
@@ -13,5 +15,10 @@ public enum MainDish {
     MainDish(String name, int price) {
         this.name = name;
         this.price = price;
+    }
+
+    public static boolean isContainMenu(String menu) {
+        return Arrays.stream(values())
+                .anyMatch(mainDish -> mainDish.name.equals(menu));
     }
 }
