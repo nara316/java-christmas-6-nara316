@@ -12,6 +12,7 @@ public class Menu {
     private final String name;
 
     private Menu(String name) {
+        validateContainsMenuConstant();
         this.name = name;
     }
 
@@ -28,5 +29,9 @@ public class Menu {
     private boolean checkContainsMenuConstant() {
         return Appetizer.isContainMenu(name) || Dessert.isContainMenu(name) ||
                 Drink.isContainMenu(name) || MainDish.isContainMenu(name);
+    }
+
+    public String getName() {
+        return name;
     }
 }

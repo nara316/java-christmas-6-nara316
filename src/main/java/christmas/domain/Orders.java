@@ -7,7 +7,9 @@ import static christmas.constant.StringConstant.DIVISION_ORDERS;
 import static christmas.converter.StringConverter.strToInt;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Orders {
@@ -17,6 +19,7 @@ public class Orders {
     private Orders(String userInput) {
         this.orders = generateOrders(userInput);
         validateMaxQuantity();
+        validateMenuDuplicated();
     }
 
     public static Orders from(String userInput) {
@@ -36,6 +39,17 @@ public class Orders {
                 .sum();
 
         if (totalQuantity < ORDER_QUANTITY_TOTAL_MAX.getNumber()) {
+            throw new IllegalArgumentException(WRONG_ORDER.getMessage());
+        }
+    }
+
+    private void validateMenuDuplicated() {
+        Set<String> menus = new HashSet<>();
+        boolean isDuplicated = orders.stream()
+                .map(order -> order.getMenu().getName())
+                .anyMatch(orderMenu -> !menus.add(orderMenu));
+
+        if (isDuplicated) {
             throw new IllegalArgumentException(WRONG_ORDER.getMessage());
         }
     }
