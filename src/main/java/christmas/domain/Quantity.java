@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import static christmas.constant.NumberConstant.ORDER_QUANTITY_MIN;
+import static christmas.constant.NumberConstant.ORDER_QUANTITY_TOTAL_MAX;
 
 import christmas.constant.ExceptionConstant;
 
@@ -9,8 +10,8 @@ public class Quantity {
     private final int value;
 
     private Quantity(int value) {
-        validateMinValue();
         this.value = value;
+        validateMinValue();
     }
 
     public static Quantity from(int value) {
