@@ -6,9 +6,7 @@ import static christmas.constant.StringConstant.DIVISION_MENU_AND_QUANTITY;
 import static christmas.constant.StringConstant.DIVISION_ORDERS;
 import static christmas.converter.StringConverter.strToInt;
 
-import christmas.constant.menu.Appetizer;
-import christmas.constant.menu.Drink;
-import christmas.constant.menu.MainDish;
+import christmas.constant.MenuConstant;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -68,7 +66,6 @@ public class Orders {
     }
 
     private boolean checkOnlyDrink(String name) {
-        return Appetizer.isContainMenu(name) ||
-                Drink.isContainMenu(name) || MainDish.isContainMenu(name);
+        return MenuConstant.isContainMenu(name);
     }
 }

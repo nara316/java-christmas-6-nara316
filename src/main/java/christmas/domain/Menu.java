@@ -2,10 +2,7 @@ package christmas.domain;
 
 import static christmas.constant.ExceptionConstant.WRONG_ORDER;
 
-import christmas.constant.menu.Appetizer;
-import christmas.constant.menu.Dessert;
-import christmas.constant.menu.Drink;
-import christmas.constant.menu.MainDish;
+import christmas.constant.MenuConstant;
 
 public class Menu {
 
@@ -27,8 +24,7 @@ public class Menu {
     }
 
     private boolean checkContainsMenuConstant() {
-        return Appetizer.isContainMenu(name) || Dessert.isContainMenu(name) ||
-                Drink.isContainMenu(name) || MainDish.isContainMenu(name);
+        return MenuConstant.isContainMenu(name);
     }
 
     public String getName() {

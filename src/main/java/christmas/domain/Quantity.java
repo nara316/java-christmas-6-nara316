@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import static christmas.constant.NumberConstant.ORDER_QUANTITY_MIN;
-import static christmas.constant.NumberConstant.ORDER_QUANTITY_TOTAL_MAX;
 
 import christmas.constant.ExceptionConstant;
 

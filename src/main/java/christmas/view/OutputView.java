@@ -11,12 +11,9 @@ public class OutputView {
     private static final String TOTAL_ORDER_PRICE_AFTER_BENEFIT_MESSAGE = "<할인 후 예상 결제 금액>\n" + "%,d원";
     private static final String EVENT_BADGE_MESSAGE = "<12월 이벤트 배지>\n";
 
-    public void printTotalResult() {
-        printDiscountPreview();
-    }
 
-    private void printDiscountPreview() {
-        System.out.println(DISCOUNT_PREVIEW_MESSAGE);
+    private void printDiscountPreview(int visitDate) {
+        System.out.printf(DISCOUNT_PREVIEW_MESSAGE, visitDate);
     }
 
     private void printOrderMenu() {
