@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.constant.ExceptionConstant.WRONG_ORDER;
+import static christmas.constant.NumberConstant.ORDER_QUANTITY_TOTAL_MAX;
 import static christmas.constant.StringConstant.DIVISION_MENU_AND_QUANTITY;
 import static christmas.constant.StringConstant.DIVISION_ORDERS;
 import static christmas.converter.StringConverter.strToInt;
@@ -14,6 +16,7 @@ public class Orders {
 
     private Orders(String userInput) {
         this.orders = generateOrders(userInput);
+        validateMaxQuantity();
     }
 
     public static Orders from(String userInput) {
@@ -25,5 +28,15 @@ public class Orders {
                 .map(orders -> orders.split(DIVISION_MENU_AND_QUANTITY.getMessage()))
                 .map(order -> Order.of(order[0], strToInt(order[1])))
                 .collect(Collectors.toList());
+    }
+
+    private void validateMaxQuantity() {
+        int totalQuantity = orders.stream()
+                .mapToInt(order -> order.getQuantity().getValue())
+                .sum();
+
+        if (totalQuantity < ORDER_QUANTITY_TOTAL_MAX.getNumber()) {
+            throw new IllegalArgumentException(WRONG_ORDER.getMessage());
+        }
     }
 }

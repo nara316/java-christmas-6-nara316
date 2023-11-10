@@ -22,4 +22,8 @@ public class Quantity {
             throw new IllegalArgumentException(ExceptionConstant.WRONG_ORDER.getMessage());
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }

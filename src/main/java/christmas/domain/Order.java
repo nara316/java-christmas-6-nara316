@@ -13,4 +13,8 @@ public class Order {
     public static Order of(String menu, int quantity) {
         return new Order(menu, quantity);
     }
+
+    public Quantity getQuantity() {
+        return quantity;
+    }
 }
