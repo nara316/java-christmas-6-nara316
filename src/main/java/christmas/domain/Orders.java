@@ -23,6 +23,7 @@ public class Orders {
         this.orders = generateOrders(userInput);
         validateMaxQuantity();
         validateMenuDuplicated();
+        validateOrderOnlyDrink();
     }
 
     public static Orders from(String userInput) {
@@ -41,7 +42,7 @@ public class Orders {
                 .mapToInt(order -> order.getQuantity().getValue())
                 .sum();
 
-        if (totalQuantity < ORDER_QUANTITY_TOTAL_MAX.getNumber()) {
+        if (totalQuantity > ORDER_QUANTITY_TOTAL_MAX.getNumber()) {
             throw new IllegalArgumentException(WRONG_ORDER.getMessage());
         }
     }
@@ -57,7 +58,7 @@ public class Orders {
         }
     }
 
-    private void validateOrderOnlyDrink(List<Order> orders) {
+    private void validateOrderOnlyDrink() {
         boolean isOnlyDrink = orders.stream()
                 .anyMatch(order -> checkOnlyDrink(order.getMenu().getName()));
 
