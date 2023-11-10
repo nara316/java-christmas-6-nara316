@@ -13,7 +13,7 @@ public enum MenuConstant {
     RED_WINE("drink", "레드와인", 60_000),
     CHAMPAGNE("drink", "샴페인", 25_000),
     T_BONE_STEAK("mainDish", "티본스테이크", 55_000),
-    BARBECUE_LIP("mainDish", "바베큐립", 54_000),
+    BARBECUE_LIP("mainDish", "바비큐립", 54_000),
     SEAFOOD_PASTA("mainDish", "해산물파스타", 35_000),
     CHRISTMAS_PASTA("mainDish", "크리스마스파스타", 25_000);
 
@@ -30,5 +30,12 @@ public enum MenuConstant {
     public static boolean isContainMenu(String menu) {
         return Arrays.stream(values())
                 .anyMatch(drink -> drink.name.equals(menu));
+    }
+
+    public static MenuConstant matchOrders(String menuName) {
+        return Arrays.stream(values())
+                .filter(menuConstant -> menuConstant.name.equals(menuName))
+                .findFirst()
+                .orElse(null);
     }
 }

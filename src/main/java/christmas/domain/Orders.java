@@ -68,4 +68,8 @@ public class Orders {
     private boolean checkOnlyDrink(String name) {
         return MenuConstant.isContainMenu(name);
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 }
