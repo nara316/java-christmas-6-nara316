@@ -9,6 +9,7 @@ public class Quantity {
     private final int value;
 
     private Quantity(int value) {
+        validateMinValue();
         this.value = value;
     }
 
