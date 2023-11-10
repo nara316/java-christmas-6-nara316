@@ -3,9 +3,7 @@ package christmas.view;
 import static christmas.constant.ExceptionConstant.INPUT_IS_ESSENTIAL;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.constant.ExceptionConstant;
 import christmas.converter.StringConverter;
-import java.util.regex.Pattern;
 
 public class InputView {
 
