@@ -1,15 +1,16 @@
 package christmas.promotion;
 
-import static christmas.constant.NumberConstant.SPECIAL_DISCOUNT;
+import static christmas.constant.NumberConstant.PROMOTION_DISCOUNT;
 
+import christmas.constant.PromotionConstant;
 import christmas.constant.SpecialDayConstant;
 
 public class SpecialPromotion {
 
     public int calculateSpecialSale(int date) {
         if (SpecialDayConstant.isSpecialDay(date)) {
-            return SPECIAL_DISCOUNT.getNumber();
+            return PROMOTION_DISCOUNT.getNumber();
         }
-        return 0;
+        return PromotionConstant.getNotQualifiedPrice();
     }
 }

@@ -9,13 +9,13 @@ import java.util.EnumMap;
 public class WeekdayPromotion {
 
     public int calculateWeekdaySale(EnumMap<MenuConstant, Integer> orderResults, int date) {
-        if (checkWeekdayQualified(date)) {
+        if (isWeekdayQualified(date)) {
             return PromotionConstant.calculateWeekDayPromotion(orderResults);
         }
-        return 0;
+        return PromotionConstant.getNotQualifiedPrice();
     }
 
-    private boolean checkWeekdayQualified(int date) {
+    private boolean isWeekdayQualified(int date) {
         LocalDate December = LocalDate.of(2023, 12, 1);
         DayOfWeek today = December.plusDays(date - 1).getDayOfWeek();
 

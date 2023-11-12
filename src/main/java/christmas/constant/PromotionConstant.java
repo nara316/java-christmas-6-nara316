@@ -33,4 +33,8 @@ public enum PromotionConstant {
                 })
                 .sum();
     }
+
+    public static int getNotQualifiedPrice() {
+        return NOT_QUALIFIED.price;
+    }
 }
