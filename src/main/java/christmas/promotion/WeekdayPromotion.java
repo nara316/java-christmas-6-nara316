@@ -1,7 +1,9 @@
 package christmas.promotion;
 
+import static christmas.constant.NumberConstant.PROMOTION_NOT_QUALIFIED;
+
 import christmas.constant.MenuConstant;
-import christmas.constant.PromotionConstant;
+import christmas.constant.DayPromotionConstant;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.EnumMap;
@@ -20,9 +22,9 @@ public class WeekdayPromotion {
 
     private int calculateWeekdaySale(EnumMap<MenuConstant, Integer> orderResults, int date) {
         if (isWeekdayQualified(date)) {
-            return PromotionConstant.calculateWeekDayPromotion(orderResults);
+            return DayPromotionConstant.calculateWeekDayPromotion(orderResults);
         }
-        return PromotionConstant.getNotQualifiedPrice();
+        return PROMOTION_NOT_QUALIFIED.getNumber();
     }
 
     private boolean isWeekdayQualified(int date) {
@@ -31,5 +33,9 @@ public class WeekdayPromotion {
 
         return today == DayOfWeek.SUNDAY || today == DayOfWeek.MONDAY || today == DayOfWeek.TUESDAY ||
                 today == DayOfWeek.WEDNESDAY || today == DayOfWeek.THURSDAY;
+    }
+
+    public int getWeekdayDiscount() {
+        return weekdayDiscount;
     }
 }

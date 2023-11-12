@@ -1,8 +1,8 @@
 package christmas.promotion;
 
 import static christmas.constant.NumberConstant.PROMOTION_DISCOUNT;
+import static christmas.constant.NumberConstant.PROMOTION_NOT_QUALIFIED;
 
-import christmas.constant.PromotionConstant;
 import christmas.constant.SpecialDayConstant;
 
 public class SpecialPromotion {
@@ -21,6 +21,10 @@ public class SpecialPromotion {
         if (SpecialDayConstant.isSpecialDay(date)) {
             return PROMOTION_DISCOUNT.getNumber();
         }
-        return PromotionConstant.getNotQualifiedPrice();
+        return PROMOTION_NOT_QUALIFIED.getNumber();
+    }
+
+    public int getSpecialDiscount() {
+        return specialDiscount;
     }
 }

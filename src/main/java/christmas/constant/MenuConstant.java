@@ -1,5 +1,8 @@
 package christmas.constant;
 
+import static christmas.constant.NumberConstant.GIFT_STANDARD;
+import static christmas.constant.NumberConstant.PROMOTION_NOT_QUALIFIED;
+
 import java.util.Arrays;
 import java.util.EnumMap;
 
@@ -54,5 +57,12 @@ public enum MenuConstant {
                     return entry.getKey().price * entry.getValue();
                 })
                 .sum();
+    }
+
+    public static int checkGiftQualified(int totalPrice) {
+        if (GIFT_STANDARD.getNumber() <= totalPrice) {
+            return CHAMPAGNE.price;
+        }
+        return PROMOTION_NOT_QUALIFIED.getNumber();
     }
 }

@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.order;
 
 import static christmas.constant.ExceptionConstant.WRONG_ORDER;
 

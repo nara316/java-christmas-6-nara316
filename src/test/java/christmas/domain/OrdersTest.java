@@ -3,8 +3,8 @@ package christmas.domain;
 import static christmas.constant.ExceptionConstant.WRONG_ORDER;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.domain.order.Orders;
 import org.junit.jupiter.api.Test;
 
 class OrdersTest {

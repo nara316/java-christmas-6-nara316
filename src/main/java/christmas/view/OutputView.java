@@ -1,7 +1,6 @@
 package christmas.view;
 
 import christmas.domain.OrderResult;
-import christmas.domain.Orders;
 
 public class OutputView {
 

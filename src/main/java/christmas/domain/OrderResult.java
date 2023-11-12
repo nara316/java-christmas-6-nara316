@@ -1,6 +1,8 @@
 package christmas.domain;
 
 import christmas.constant.MenuConstant;
+import christmas.domain.order.Order;
+import christmas.domain.order.Orders;
 import java.util.EnumMap;
 
 public class OrderResult {

@@ -1,7 +1,7 @@
 package christmas.service;
 
 import christmas.domain.OrderResult;
-import christmas.domain.Orders;
+import christmas.domain.order.Orders;
 import christmas.domain.TotalOrderPrice;
 import christmas.domain.VisitDate;
 

@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.order;
 
 import static christmas.constant.ExceptionConstant.WRONG_ORDER;
 import static christmas.constant.NumberConstant.ORDER_QUANTITY_TOTAL_MAX;

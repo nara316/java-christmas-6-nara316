@@ -1,6 +1,5 @@
 package christmas.controller;
 
-import christmas.domain.Order;
 import christmas.domain.OrderResult;
 import christmas.domain.VisitDate;
 import christmas.service.OrderService;

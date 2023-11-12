@@ -1,16 +1,24 @@
 package christmas.promotion;
 
-import static christmas.constant.NumberConstant.GIFT_STANDARD;
-
 import christmas.constant.MenuConstant;
-import christmas.constant.PromotionConstant;
 
 public class GiftPromotion {
 
-    public Enum checkGiftQualified(int totalPrice) {
-        if (GIFT_STANDARD.getNumber() <= totalPrice) {
-            return MenuConstant.CHAMPAGNE;
-        }
-        return PromotionConstant.NOT_QUALIFIED;
+    private final int giftDiscount;
+
+    private GiftPromotion(int totalPrice) {
+        this.giftDiscount = caculateGiftDiscount(totalPrice);
+    }
+
+    public static GiftPromotion from(int totalPrice) {
+        return new GiftPromotion(totalPrice);
+    }
+
+    private int caculateGiftDiscount(int totalPrice) {
+        return MenuConstant.checkGiftQualified(totalPrice);
+    }
+
+    public int getGiftDiscount() {
+        return giftDiscount;
     }
 }

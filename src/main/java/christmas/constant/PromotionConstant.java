@@ -1,40 +1,17 @@
 package christmas.constant;
 
-import java.util.EnumMap;
-
 public enum PromotionConstant {
 
-    NOT_QUALIFIED("없음", 0),
-    WEEKDAY_PROMOTION("dessert", 2_023),
-    WEEKEND_PROMOTION("mainDish", 2_023);
+    CHRISTMAS("크리스마스 디데이 할인"),
+    SPECIAL("특별 할인"),
+    WEEKDAY("평일 할인"),
+    WEEKEND("주말 할인"),
+    GIFT("증정 이벤트"),
+    NOT_QUALIFIED("없음");
 
-    private final String message;
-    private final int price;
+    private final String label;
 
-    PromotionConstant(String message, int price) {
-        this.message = message;
-        this.price = price;
-    }
-
-    public static int calculateWeekDayPromotion(EnumMap<MenuConstant, Integer> orderResults) {
-        return orderResults.entrySet().stream()
-                .filter(entry -> entry.getKey().getType().equals(WEEKDAY_PROMOTION.message))
-                .mapToInt(entry -> {
-                    return entry.getValue() * WEEKDAY_PROMOTION.price;
-                })
-                .sum();
-    }
-
-    public static int calculateWeekendPromotion(EnumMap<MenuConstant, Integer> orderResults) {
-        return orderResults.entrySet().stream()
-                .filter(entry -> entry.getKey().getType().equals(WEEKEND_PROMOTION.message))
-                .mapToInt(entry -> {
-                    return entry.getValue() * WEEKEND_PROMOTION.price;
-                })
-                .sum();
-    }
-
-    public static int getNotQualifiedPrice() {
-        return NOT_QUALIFIED.price;
+    PromotionConstant(String label) {
+        this.label = label;
     }
 }
