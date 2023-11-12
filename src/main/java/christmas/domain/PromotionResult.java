@@ -14,22 +14,26 @@ public class PromotionResult {
     private final EnumMap<PromotionConstant, Integer> promotionResult;
 
     private PromotionResult(int date, int totalPrice, OrderResult orderResult) {
-        this.promotionResult = generateTotalDiscount(date, totalPrice, orderResult);
-        applyNotQualified();
+        this.promotionResult = generateTotalDiscount();
+        applyAllPromotion(date, totalPrice, orderResult);
     }
 
     public static PromotionResult of(int date, int totalPrice, OrderResult orderResult) {
         return new PromotionResult(date, totalPrice, orderResult);
     }
 
-    private EnumMap<PromotionConstant, Integer> generateTotalDiscount(int date, int totalPrice, OrderResult orderResult) {
+    private EnumMap<PromotionConstant, Integer> generateTotalDiscount() {
         EnumMap<PromotionConstant, Integer> promotionResult = new EnumMap<>(PromotionConstant.class);
+        return promotionResult;
+    }
+
+    private void applyAllPromotion(int date, int totalPrice, OrderResult orderResult) {
         applyGiftPromotion(totalPrice);
         applyChristmasPromotion(date);
         applySpecialPromotion(date);
         applyWeekdayPromotion(orderResult, date);
         applyWeekendPromotion(orderResult, date);
-        return promotionResult;
+        applyNotQualified();
     }
 
     private void applyGiftPromotion(int totalPrice) {
@@ -71,5 +75,15 @@ public class PromotionResult {
         if (promotionResult.isEmpty()) {
          promotionResult.put(PromotionConstant.NOT_QUALIFIED, NumberConstant.PROMOTION_NOT_QUALIFIED.getNumber());
         }
+    }
+
+    public int calculateTotalDiscount() {
+        return promotionResult.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
+    public EnumMap<PromotionConstant, Integer> getPromotionResult() {
+        return promotionResult;
     }
 }

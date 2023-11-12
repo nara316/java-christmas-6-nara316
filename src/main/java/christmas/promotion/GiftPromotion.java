@@ -7,14 +7,14 @@ public class GiftPromotion {
     private final int giftDiscount;
 
     private GiftPromotion(int totalPrice) {
-        this.giftDiscount = caculateGiftDiscount(totalPrice);
+        this.giftDiscount = calculateGiftDiscount(totalPrice);
     }
 
     public static GiftPromotion from(int totalPrice) {
         return new GiftPromotion(totalPrice);
     }
 
-    private int caculateGiftDiscount(int totalPrice) {
+    private int calculateGiftDiscount(int totalPrice) {
         return MenuConstant.checkGiftQualified(totalPrice);
     }
 
