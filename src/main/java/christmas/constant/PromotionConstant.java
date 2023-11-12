@@ -1,5 +1,7 @@
 package christmas.constant;
 
+import java.util.EnumMap;
+
 public enum PromotionConstant {
 
     NOT_QUALIFIED("없음", 0),
@@ -12,5 +14,14 @@ public enum PromotionConstant {
     PromotionConstant(String message, int price) {
         this.message = message;
         this.price = price;
+    }
+
+    public static int calculateWeekDayPromotion(EnumMap<MenuConstant, Integer> orderResults) {
+        return orderResults.entrySet().stream()
+                .filter(entry -> entry.getKey().getType().equals(WEEKDAY_PROMOTION.message))
+                .mapToInt(entry -> {
+                    return entry.getValue() * WEEKDAY_PROMOTION.price;
+                })
+                .sum();
     }
 }
