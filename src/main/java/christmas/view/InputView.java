@@ -1,6 +1,7 @@
 package christmas.view;
 
 import static christmas.constant.ExceptionConstant.INPUT_IS_ESSENTIAL;
+import static christmas.constant.ExceptionConstant.VISIT_DATE_RANGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.converter.StringConverter;
@@ -14,7 +15,7 @@ public class InputView {
 
     public int inputVisitDate() {
         String visitDate = printMessageAndGetInput(REQUEST_VISIT_DATE);
-        return StringConverter.strToInt(visitDate);
+        return StringConverter.strToInt(visitDate, VISIT_DATE_RANGE.getMessage());
     }
 
     public String inputOrders() {

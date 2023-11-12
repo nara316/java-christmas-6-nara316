@@ -6,7 +6,9 @@ import static christmas.constant.StringConstant.DIVISION_MENU_AND_QUANTITY;
 import static christmas.constant.StringConstant.DIVISION_ORDERS;
 import static christmas.converter.StringConverter.strToInt;
 
+import christmas.constant.ExceptionConstant;
 import christmas.constant.MenuConstant;
+import christmas.converter.StringConverter;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -31,7 +33,7 @@ public class Orders {
     private List<Order> generateOrders(String userInput) {
         return Arrays.stream(userInput.split(DIVISION_ORDERS.getMessage()))
                 .map(orders -> orders.split(DIVISION_MENU_AND_QUANTITY.getMessage()))
-                .map(order -> Order.of(order[0], strToInt(order[1])))
+                .map(order -> Order.of(order[0], strToInt(order[1], WRONG_ORDER.getMessage())))
                 .collect(Collectors.toList());
     }
 
