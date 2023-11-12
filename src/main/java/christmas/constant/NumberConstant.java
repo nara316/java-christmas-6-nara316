@@ -6,7 +6,8 @@ public enum NumberConstant {
     END_DATE(31),
     ORDER_QUANTITY_MIN(1),
     ORDER_QUANTITY_TOTAL_MAX(20),
-    GIFT_STANDARD(120_000);
+    GIFT_STANDARD(120_000),
+    SPECIAL_DISCOUNT(1_000);
 
     private final int number;
 
