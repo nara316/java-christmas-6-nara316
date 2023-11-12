@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.OrderResult;
 import christmas.domain.Orders;
 
 public class OutputView {
@@ -14,15 +15,16 @@ public class OutputView {
     private static final String EVENT_BADGE_MESSAGE = "<12월 이벤트 배지>\n";
 
 
-    private void printDiscountPreview(int visitDate) {
+    public void printDiscountPreview(int visitDate) {
         System.out.printf(DISCOUNT_PREVIEW_MESSAGE, visitDate);
     }
 
-    private void printOrderMenu(Orders orders) {
+    public void printOrderMenu(OrderResult result) {
         System.out.println(ORDER_MENU_MESSAGE);
-        orders.getOrders().stream()
-                .map(order -> String.format("%s, %d개", order.getMenu().getName(), order.getQuantity().getValue()))
-                .forEach(System.out::println);
+        result.getOrderResult().entrySet().stream()
+                .forEach(entry -> {
+                    System.out.println(entry.getKey().getName() + " " + entry.getValue() + "개");
+                });
     }
 
     private void printTotalOrderPrice() {

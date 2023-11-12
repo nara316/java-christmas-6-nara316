@@ -15,6 +15,6 @@ public enum ExceptionConstant {
     }
 
     public String getMessage() {
-        return ERROR_TITLE + message;
+        return ERROR_TITLE.message + message;
     }
 }

@@ -23,4 +23,8 @@ public class OrderResult {
         }
         return orderResult;
     }
+
+    public EnumMap<MenuConstant, Integer> getOrderResult() {
+        return orderResult;
+    }
 }

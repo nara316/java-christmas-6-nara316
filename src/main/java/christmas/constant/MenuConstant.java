@@ -31,6 +31,10 @@ public enum MenuConstant {
         return type;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static boolean isContainMenu(String menu) {
         return Arrays.stream(values())
                 .anyMatch(drink -> drink.name.equals(menu));

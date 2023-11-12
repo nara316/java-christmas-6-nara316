@@ -22,4 +22,8 @@ public class VisitDate {
             throw new IllegalArgumentException(VISIT_DATE_RANGE.getMessage());
         }
     }
+
+    public int getDate() {
+        return date;
+    }
 }

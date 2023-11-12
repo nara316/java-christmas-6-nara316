@@ -17,7 +17,7 @@ public class InputView {
         return StringConverter.strToInt(visitDate);
     }
 
-    public String inputMenuAndAmount() {
+    public String inputOrders() {
         return printMessageAndGetInput(REQUEST_MENU_AND_AMOUNT);
     }
 
