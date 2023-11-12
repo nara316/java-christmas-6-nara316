@@ -1,5 +1,8 @@
 package christmas.domain;
 
+import static christmas.constant.NumberConstant.PROMOTION_STANDARD;
+
+import christmas.constant.MenuConstant;
 import christmas.constant.NumberConstant;
 import christmas.constant.PromotionConstant;
 import christmas.promotion.ChristmasPromotion;
@@ -28,11 +31,13 @@ public class PromotionResult {
     }
 
     private void applyAllPromotion(int date, int totalPrice, OrderResult orderResult) {
-        applyGiftPromotion(totalPrice);
-        applyChristmasPromotion(date);
-        applySpecialPromotion(date);
-        applyWeekdayPromotion(orderResult, date);
-        applyWeekendPromotion(orderResult, date);
+        if (PROMOTION_STANDARD.getNumber() <= totalPrice) {
+            applyGiftPromotion(totalPrice);
+            applyChristmasPromotion(date);
+            applySpecialPromotion(date);
+            applyWeekdayPromotion(orderResult, date);
+            applyWeekendPromotion(orderResult, date);
+        }
         applyNotQualified();
     }
 
@@ -81,6 +86,13 @@ public class PromotionResult {
         return promotionResult.values().stream()
                 .mapToInt(Integer::intValue)
                 .sum();
+    }
+
+    public int calculateTotalDiscountWithoutGift(PromotionResult promotionResult, int totalDiscountPrice) {
+        if (PromotionConstant.checkGiftApplied(promotionResult) == true) {
+            return totalDiscountPrice - MenuConstant.getGiftPrice();
+        }
+        return totalDiscountPrice;
     }
 
     public EnumMap<PromotionConstant, Integer> getPromotionResult() {

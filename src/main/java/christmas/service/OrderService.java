@@ -8,7 +8,7 @@ import christmas.domain.VisitDate;
 public class OrderService {
 
     public VisitDate generateVisitDate(int date) {
-        return VisitDate.of(date);
+        return VisitDate.from(date);
     }
 
     public OrderResult generateOrders(String userInput) {

@@ -38,6 +38,8 @@ public class MainController {
         outputView.printBenefitsDetails(promotionResult);
         int totalDiscountPrice = discountService.calculateTotalDiscount(promotionResult);
         outputView.printTotalBenefitPrice(totalDiscountPrice);
+        outputView.printTotalOrderPriceAfterBenefit(promotionResult, totalPrice);
+        outputView.printEventBadge(totalDiscountPrice);
     }
 
     private VisitDate inputVisitDate() {

@@ -13,7 +13,7 @@ public class VisitDate {
         this.date = date;
     }
 
-    public static VisitDate of(int date) {
+    public static VisitDate from(int date) {
         return new VisitDate(date);
     }
 

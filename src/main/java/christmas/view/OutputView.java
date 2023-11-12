@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.constant.PromotionConstant;
+import christmas.domain.Badge;
 import christmas.domain.OrderResult;
 import christmas.domain.PromotionResult;
 
@@ -49,11 +50,12 @@ public class OutputView {
         System.out.printf(TOTAL_BENEFIT_PRICE_MESSAGE, totalDiscountPrice);
     }
 
-    private void printTotalOrderPriceAfterBenefit() {
-        System.out.println(TOTAL_ORDER_PRICE_AFTER_BENEFIT_MESSAGE);
+    public void printTotalOrderPriceAfterBenefit(PromotionResult promotionResult, int totalPrice) {
+        System.out.printf(TOTAL_ORDER_PRICE_AFTER_BENEFIT_MESSAGE,
+                promotionResult.calculateTotalDiscountWithoutGift(promotionResult, totalPrice));
     }
 
-    private void EVENT_BADGE_MESSAGE() {
-        System.out.println(EVENT_BADGE_MESSAGE);
+    public void printEventBadge(int totalDiscountPrice) {
+        System.out.println(EVENT_BADGE_MESSAGE + Badge.from(totalDiscountPrice).getName());
     }
 }

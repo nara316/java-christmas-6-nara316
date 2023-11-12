@@ -65,4 +65,12 @@ public enum MenuConstant {
         }
         return PROMOTION_NOT_QUALIFIED.getNumber();
     }
+
+    public static String getGiftName() {
+        return CHAMPAGNE.name;
+    }
+
+    public static int getGiftPrice() {
+        return CHAMPAGNE.price;
+    }
 }

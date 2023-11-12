@@ -1,7 +1,5 @@
 package christmas.constant;
 
-import static christmas.constant.MenuConstant.CHAMPAGNE;
-
 import christmas.domain.PromotionResult;
 
 public enum PromotionConstant {
@@ -21,9 +19,13 @@ public enum PromotionConstant {
 
     public static String checkGiftQualified(PromotionResult promotionResult) {
         if (promotionResult.getPromotionResult().containsKey(GIFT)) {
-            return CHAMPAGNE.getName() + " 1개";
+            return MenuConstant.getGiftName() + " 1개";
         }
         return NOT_QUALIFIED.label;
+    }
+
+    public static boolean checkGiftApplied(PromotionResult promotionResult) {
+        return promotionResult.getPromotionResult().containsKey(GIFT);
     }
 
     public String getLabel() {
