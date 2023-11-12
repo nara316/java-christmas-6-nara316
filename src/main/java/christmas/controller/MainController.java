@@ -25,6 +25,7 @@ public class MainController {
         OrderResult orderResult = executeWithExceptionHandle(this::inputOrders);
         outputView.printDiscountPreview(visitDate.getDate());
         outputView.printOrderMenu(orderResult);
+        outputView.printTotalOrderPrice(orderService.generateTotalPrice(orderResult));
     }
 
     private VisitDate inputVisitDate() {

@@ -1,6 +1,7 @@
 package christmas.constant;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 
 public enum MenuConstant {
 
@@ -45,5 +46,13 @@ public enum MenuConstant {
                 .filter(menuConstant -> menuConstant.name.equals(menuName))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public static int calculateTotalPrice(EnumMap<MenuConstant, Integer> orderResult) {
+        return orderResult.entrySet().stream()
+                .mapToInt(entry -> {
+                    return entry.getKey().price * entry.getValue();
+                })
+                .sum();
     }
 }

@@ -28,7 +28,7 @@ public class Orders {
         return new Orders(userInput);
     }
 
-    private static List<Order> generateOrders(String userInput) {
+    private List<Order> generateOrders(String userInput) {
         return Arrays.stream(userInput.split(DIVISION_ORDERS.getMessage()))
                 .map(orders -> orders.split(DIVISION_MENU_AND_QUANTITY.getMessage()))
                 .map(order -> Order.of(order[0], strToInt(order[1])))
