@@ -1,5 +1,7 @@
 package christmas.view;
 
+import christmas.domain.Orders;
+
 public class OutputView {
 
     private static final String DISCOUNT_PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
@@ -16,8 +18,11 @@ public class OutputView {
         System.out.printf(DISCOUNT_PREVIEW_MESSAGE, visitDate);
     }
 
-    private void printOrderMenu() {
+    private void printOrderMenu(Orders orders) {
         System.out.println(ORDER_MENU_MESSAGE);
+        orders.getOrders().stream()
+                .map(order -> String.format("%s, %d개", order.getMenu().getName(), order.getQuantity().getValue()))
+                .forEach(System.out::println);
     }
 
     private void printTotalOrderPrice() {
