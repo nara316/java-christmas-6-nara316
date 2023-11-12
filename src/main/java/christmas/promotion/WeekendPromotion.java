@@ -8,7 +8,17 @@ import java.util.EnumMap;
 
 public class WeekendPromotion {
 
-    public int calculateWeekendSale(EnumMap<MenuConstant, Integer> orderResults, int date) {
+    private final int weekendDiscount;
+
+    private WeekendPromotion(EnumMap<MenuConstant, Integer> orderResults, int date) {
+        this.weekendDiscount = calculateWeekendSale(orderResults, date);
+    }
+
+    public static WeekendPromotion of(EnumMap<MenuConstant, Integer> orderResults, int date) {
+        return new WeekendPromotion(orderResults, date);
+    }
+
+    private int calculateWeekendSale(EnumMap<MenuConstant, Integer> orderResults, int date) {
         if (isWeekendQualified(date)) {
             return PromotionConstant.calculateWeekendPromotion(orderResults);
         }

@@ -8,7 +8,17 @@ import christmas.constant.PromotionConstant;
 
 public class ChristmasPromotion {
 
-    public int calculateChristmasSale(int date) {
+    private final int christmasDiscount;
+
+    private ChristmasPromotion(int date) {
+        this.christmasDiscount = calculateChristmasSale(date);
+    }
+
+    public static ChristmasPromotion from(int date) {
+        return new ChristmasPromotion(date);
+    }
+
+    private int calculateChristmasSale(int date) {
         if (isChristmasQualified(date)) {
             return PROMOTION_DISCOUNT.getNumber() + (date - 1) * CHRISTMAS_DISCOUNT.getNumber();
         }

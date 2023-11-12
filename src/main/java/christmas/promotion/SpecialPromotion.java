@@ -7,7 +7,17 @@ import christmas.constant.SpecialDayConstant;
 
 public class SpecialPromotion {
 
-    public int calculateSpecialSale(int date) {
+    private final int specialDiscount;
+
+    private SpecialPromotion(int date) {
+        this.specialDiscount = calculateSpecialSale(date);
+    }
+
+    public static SpecialPromotion from(int date) {
+        return new SpecialPromotion(date);
+    }
+
+    private int calculateSpecialSale(int date) {
         if (SpecialDayConstant.isSpecialDay(date)) {
             return PROMOTION_DISCOUNT.getNumber();
         }
