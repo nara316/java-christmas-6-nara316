@@ -6,9 +6,7 @@ import static christmas.constant.StringConstant.DIVISION_MENU_AND_QUANTITY;
 import static christmas.constant.StringConstant.DIVISION_ORDERS;
 import static christmas.converter.StringConverter.strToInt;
 
-import christmas.constant.ExceptionConstant;
 import christmas.constant.MenuConstant;
-import christmas.converter.StringConverter;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +20,7 @@ public class Orders {
     private Orders(String userInput) {
         this.orders = generateOrders(userInput);
         validateMaxQuantity();
-        validateMenuDuplicated();
+        validateMenuNameDuplicated();
         validateOrderOnlyDrink();
     }
 
@@ -47,11 +45,11 @@ public class Orders {
         }
     }
 
-    private void validateMenuDuplicated() {
-        Set<String> menus = new HashSet<>();
+    private void validateMenuNameDuplicated() {
+        Set<String> menusNotDuplicated = new HashSet<>();
         boolean isDuplicated = orders.stream()
                 .map(order -> order.getMenu().getName())
-                .anyMatch(orderMenu -> !menus.add(orderMenu));
+                .anyMatch(orderMenu -> !menusNotDuplicated.add(orderMenu));
 
         if (isDuplicated) {
             throw new IllegalArgumentException(WRONG_ORDER.getMessage());
@@ -59,16 +57,12 @@ public class Orders {
     }
 
     private void validateOrderOnlyDrink() {
-        boolean isOnlyDrink = orders.stream()
-                .anyMatch(order -> checkOnlyDrink(order.getMenu().getName()));
+        boolean hasOnlyDrink = orders.stream()
+                .allMatch(order -> MenuConstant.isContainDrink(order.getMenu().getName()));
 
-        if (!isOnlyDrink) {
+        if (hasOnlyDrink) {
             throw new IllegalArgumentException(WRONG_ORDER.getMessage());
         }
-    }
-
-    private boolean checkOnlyDrink(String name) {
-        return MenuConstant.isContainMenu(name);
     }
 
     public List<Order> getOrders() {

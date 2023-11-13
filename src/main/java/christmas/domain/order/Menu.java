@@ -8,23 +8,18 @@ public class Menu {
 
     private final String name;
 
-    private Menu(String name) {
-        this.name = name;
-        validateContainsMenuConstant();
+    private Menu(String menuName) {
+        checkContainsRestaurant(menuName);
+        this.name = menuName;
     }
 
-    public static Menu from(String name) {
-        return new Menu(name);
+    public static Menu from(String menuName) {
+        return new Menu(menuName);
     }
 
-    private void validateContainsMenuConstant() {
-        if (checkContainsMenuConstant() == false) {
-            throw new IllegalArgumentException(WRONG_ORDER.getMessage());
-        }
-    }
-
-    private boolean checkContainsMenuConstant() {
-        return MenuConstant.isContainMenu(name);
+    private void checkContainsRestaurant(String menuName) {
+        MenuConstant.matchByMenuName(menuName).orElseThrow(
+                () -> new IllegalArgumentException(WRONG_ORDER.getMessage()));
     }
 
     public String getName() {

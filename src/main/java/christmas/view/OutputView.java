@@ -56,6 +56,6 @@ public class OutputView {
     }
 
     public void printEventBadge(int totalDiscountPrice) {
-        System.out.println(EVENT_BADGE_MESSAGE + Badge.from(totalDiscountPrice).getName());
+        System.out.println(EVENT_BADGE_MESSAGE + Badge.from(totalDiscountPrice).getLabel());
     }
 }

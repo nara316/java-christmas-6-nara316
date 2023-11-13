@@ -4,6 +4,7 @@ import christmas.constant.MenuConstant;
 import christmas.domain.order.Order;
 import christmas.domain.order.Orders;
 import java.util.EnumMap;
+import java.util.stream.Collectors;
 
 public class OrderResult {
 
@@ -21,7 +22,8 @@ public class OrderResult {
         EnumMap<MenuConstant, Integer> orderResult = new EnumMap<>(MenuConstant.class);
 
         for (Order order : orders.getOrders()) {
-            orderResult.put(MenuConstant.matchOrders(order.getMenu().getName()), order.getQuantity().getValue());
+            MenuConstant.matchByMenuName(order.getMenu().getName())
+                    .ifPresent(menuConstant -> orderResult.put(menuConstant, order.getQuantity().getValue()));
         }
         return orderResult;
     }

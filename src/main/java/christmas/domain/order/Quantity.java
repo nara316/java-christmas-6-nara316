@@ -9,15 +9,15 @@ public class Quantity {
     private final int value;
 
     private Quantity(int value) {
+        validateMinValue(value);
         this.value = value;
-        validateMinValue();
     }
 
     public static Quantity from(int value) {
         return new Quantity(value);
     }
 
-    private void validateMinValue() {
+    private void validateMinValue(int value) {
         if (value < ORDER_QUANTITY_MIN.getNumber()) {
             throw new IllegalArgumentException(ExceptionConstant.WRONG_ORDER.getMessage());
         }

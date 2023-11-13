@@ -6,25 +6,26 @@ import christmas.constant.BadgeConstant;
 
 public class Badge {
 
-    private final String name;
+    private final String label;
 
     private Badge(int totalDiscount) {
-        this.name = generateBadge(totalDiscount);
+        this.label = generateBadge(totalDiscount);
     }
 
     public static Badge from(int totalDiscount) {
         return new Badge(totalDiscount);
     }
 
-    private String generateBadge(int totalPrice) {
-        BadgeConstant badgeConstant = BadgeConstant.calculateBadge(totalPrice);
+    private String generateBadge(int totalDiscount) {
+        BadgeConstant badgeConstant = BadgeConstant.calculateBadge(totalDiscount);
+
         if (badgeConstant == null) {
             return NOT_QUALIFIED.getLabel();
         }
         return badgeConstant.getLabel();
     }
 
-    public String getName() {
-        return name;
+    public String getLabel() {
+        return label;
     }
 }

@@ -5,6 +5,7 @@ import static christmas.constant.NumberConstant.PROMOTION_NOT_QUALIFIED;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.Optional;
 
 public enum MenuConstant {
 
@@ -39,16 +40,15 @@ public enum MenuConstant {
         return name;
     }
 
-    public static boolean isContainMenu(String menu) {
-        return Arrays.stream(values())
-                .anyMatch(drink -> drink.name.equals(menu));
-    }
-
-    public static MenuConstant matchOrders(String menuName) {
+    public static Optional<MenuConstant> matchByMenuName(String menuName) {
         return Arrays.stream(values())
                 .filter(menuConstant -> menuConstant.name.equals(menuName))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
+    }
+
+    public static boolean isContainDrink(String menuName) {
+        return Arrays.stream(values())
+                .allMatch(menu -> menu.type.equals("drink") && menu.name.equals(menuName));
     }
 
     public static int calculateTotalPrice(EnumMap<MenuConstant, Integer> orderResult) {
