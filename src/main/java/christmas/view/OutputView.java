@@ -4,6 +4,8 @@ import christmas.constant.promotion.PromotionConstant;
 import christmas.domain.Badge;
 import christmas.domain.OrderResult;
 import christmas.domain.PromotionResult;
+import christmas.domain.TotalOrderPrice;
+import christmas.domain.VisitDate;
 
 public class OutputView {
 
@@ -17,20 +19,18 @@ public class OutputView {
     private static final String EVENT_BADGE_MESSAGE = "<12월 이벤트 배지>\n";
 
 
-    public void printDiscountPreview(int visitDate) {
-        System.out.printf(DISCOUNT_PREVIEW_MESSAGE, visitDate);
+    public void printDiscountPreview(VisitDate visitDate) {
+        System.out.printf(DISCOUNT_PREVIEW_MESSAGE, visitDate.getDate());
     }
 
     public void printOrderMenu(OrderResult result) {
         System.out.println(ORDER_MENU_MESSAGE);
-        result.getOrderResult().entrySet().stream()
-                .forEach(entry -> {
-                    System.out.println(entry.getKey().getName() + " " + entry.getValue() + "개");
-                });
+        result.getOrderResult().forEach((menu, quantity) ->
+                System.out.println(menu.getName() + " " + quantity + "개"));
     }
 
-    public void printTotalOrderPrice(int totalPrice) {
-        System.out.printf(TOTAL_ORDER_PRICE_MESSAGE, totalPrice);
+    public void printTotalOrderPrice(TotalOrderPrice totalOrderPrice) {
+        System.out.printf(TOTAL_ORDER_PRICE_MESSAGE, totalOrderPrice.getTotalPrice());
     }
 
     public void printGiftMenu(PromotionResult promotionResult) {
@@ -40,19 +40,17 @@ public class OutputView {
 
     public void printBenefitsDetails(PromotionResult promotionResult) {
         System.out.println(BENEFITS_DETAILS_MESSAGE);
-        promotionResult.getPromotionResult().entrySet().stream()
-                .forEach(entry -> {
-                    System.out.printf(entry.getKey().getLabel() + ": " + "-%,d원\n", entry.getValue());
-                });
+        promotionResult.getPromotionResult().forEach((promotion, value) ->
+                System.out.printf("%s: -%,d원\n", promotion.getLabel(), value));
     }
 
     public void printTotalBenefitPrice(int totalDiscountPrice) {
         System.out.printf(TOTAL_BENEFIT_PRICE_MESSAGE, totalDiscountPrice);
     }
 
-    public void printTotalOrderPriceAfterBenefit(PromotionResult promotionResult, int totalPrice) {
+    public void printTotalOrderPriceAfterBenefit(PromotionResult promotionResult, TotalOrderPrice totalOrderPrice) {
         System.out.printf(TOTAL_ORDER_PRICE_AFTER_BENEFIT_MESSAGE,
-                promotionResult.calculateTotalDiscountWithoutGift(promotionResult, totalPrice));
+                promotionResult.calculateTotalDiscountWithoutGift(promotionResult, totalOrderPrice.getTotalPrice()));
     }
 
     public void printEventBadge(int totalDiscountPrice) {

@@ -11,9 +11,9 @@ public class VisitDate {
     private final int date;
 
     private VisitDate(String userInput) {
-        int visitdate = StringConverter.strToInt(userInput, VISIT_DATE_RANGE.getMessage());
-        validateDateRange(visitdate);
-        this.date = visitdate;
+        int visitDate = StringConverter.strToInt(userInput, VISIT_DATE_RANGE.getMessage());
+        validateDateRange(visitDate);
+        this.date = visitDate;
     }
 
     public static VisitDate from(String userInput) {

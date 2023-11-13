@@ -53,9 +53,7 @@ public enum MenuConstant {
 
     public static int calculateTotalPrice(EnumMap<MenuConstant, Integer> orderResult) {
         return orderResult.entrySet().stream()
-                .mapToInt(entry -> {
-                    return entry.getKey().price * entry.getValue();
-                })
+                .mapToInt(entry -> entry.getKey().price * entry.getValue())
                 .sum();
     }
 

@@ -16,8 +16,8 @@ public class OrderService {
         return OrderResult.from(orders);
     }
 
-    public int generateTotalPrice(OrderResult orderResult) {
+    public TotalOrderPrice generateTotalPrice(OrderResult orderResult) {
         TotalOrderPrice totalOrderPrice = TotalOrderPrice.from(orderResult);
-        return totalOrderPrice.getTotalPrice();
+        return totalOrderPrice;
     }
 }

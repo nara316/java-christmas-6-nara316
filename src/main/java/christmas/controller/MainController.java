@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.domain.OrderResult;
 import christmas.domain.PromotionResult;
+import christmas.domain.TotalOrderPrice;
 import christmas.domain.VisitDate;
 import christmas.service.DiscountService;
 import christmas.service.OrderService;
@@ -29,16 +30,18 @@ public class MainController {
     public void run() {
         VisitDate visitDate = executeWithExceptionHandle(this::inputVisitDate);
         OrderResult orderResult = executeWithExceptionHandle(this::inputOrders);
-        outputView.printDiscountPreview(visitDate.getDate());
+        TotalOrderPrice totalOrderPrice = orderService.generateTotalPrice(orderResult);
+        PromotionResult promotionResult = discountService.generatePromotionResult(
+                visitDate, totalOrderPrice, orderResult);
+        int totalDiscountPrice = discountService.calculateTotalDiscount(promotionResult);
+
+        outputView.printDiscountPreview(visitDate);
         outputView.printOrderMenu(orderResult);
-        int totalPrice = orderService.generateTotalPrice(orderResult);
-        outputView.printTotalOrderPrice(totalPrice);
-        PromotionResult promotionResult = discountService.generatePromotionResult(visitDate.getDate(), totalPrice, orderResult);
+        outputView.printTotalOrderPrice(totalOrderPrice);
         outputView.printGiftMenu(promotionResult);
         outputView.printBenefitsDetails(promotionResult);
-        int totalDiscountPrice = discountService.calculateTotalDiscount(promotionResult);
         outputView.printTotalBenefitPrice(totalDiscountPrice);
-        outputView.printTotalOrderPriceAfterBenefit(promotionResult, totalPrice);
+        outputView.printTotalOrderPriceAfterBenefit(promotionResult, totalOrderPrice);
         outputView.printEventBadge(totalDiscountPrice);
     }
 

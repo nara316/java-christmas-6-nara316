@@ -2,11 +2,13 @@ package christmas.service;
 
 import christmas.domain.OrderResult;
 import christmas.domain.PromotionResult;
+import christmas.domain.TotalOrderPrice;
+import christmas.domain.VisitDate;
 
 public class DiscountService {
 
-    public PromotionResult generatePromotionResult(int date, int totalPrice, OrderResult orderResult) {
-        return PromotionResult.of(date, totalPrice, orderResult);
+    public PromotionResult generatePromotionResult(VisitDate visitDate, TotalOrderPrice totalPrice, OrderResult orderResult) {
+        return PromotionResult.of(visitDate, totalPrice, orderResult);
     }
 
     public int calculateTotalDiscount(PromotionResult promotionResult) {

@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.domain.order.Orders;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class PromotionResultTest {
 
@@ -19,7 +17,7 @@ class PromotionResultTest {
         TotalOrderPrice totalOrderPrice = TotalOrderPrice.from(orderResult);
 
         PromotionResult promotionResult = PromotionResult.of(
-                visitDate.getDate(), totalOrderPrice.getTotalPrice(), orderResult);
+                visitDate, totalOrderPrice, orderResult);
 
         assertThat(promotionResult.calculateTotalDiscount()).isEqualTo(0);
     }
@@ -33,7 +31,7 @@ class PromotionResultTest {
         TotalOrderPrice totalOrderPrice = TotalOrderPrice.from(orderResult);
 
         PromotionResult promotionResult = PromotionResult.of(
-                visitDate.getDate(), totalOrderPrice.getTotalPrice(), orderResult);
+                visitDate, totalOrderPrice, orderResult);
 
         assertThat(promotionResult.calculateTotalDiscount()).isEqualTo(32_069);
     }

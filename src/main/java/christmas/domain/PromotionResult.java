@@ -16,12 +16,12 @@ public class PromotionResult {
 
     private final EnumMap<PromotionConstant, Integer> promotionResult;
 
-    private PromotionResult(int visitDate, int totalOrderPrice, OrderResult orderResult) {
+    private PromotionResult(VisitDate visitDate, TotalOrderPrice totalOrderPrice, OrderResult orderResult) {
         this.promotionResult = generateTotalDiscount();
         applyAllPromotion(visitDate, totalOrderPrice, orderResult);
     }
 
-    public static PromotionResult of(int visitDate, int totalOrderPrice, OrderResult orderResult) {
+    public static PromotionResult of(VisitDate visitDate, TotalOrderPrice totalOrderPrice, OrderResult orderResult) {
         return new PromotionResult(visitDate, totalOrderPrice, orderResult);
     }
 
@@ -30,13 +30,13 @@ public class PromotionResult {
         return promotionResult;
     }
 
-    private void applyAllPromotion(int visitDate, int totalOrderPrice, OrderResult orderResult) {
-        if (PROMOTION_STANDARD.getNumber() <= totalOrderPrice) {
-            applyGiftPromotion(totalOrderPrice);
-            applyChristmasPromotion(visitDate);
-            applySpecialPromotion(visitDate);
-            applyWeekdayPromotion(orderResult, visitDate);
-            applyWeekendPromotion(orderResult, visitDate);
+    private void applyAllPromotion(VisitDate visitDate, TotalOrderPrice totalOrderPrice, OrderResult orderResult) {
+        if (PROMOTION_STANDARD.getNumber() <= totalOrderPrice.getTotalPrice()) {
+            applyGiftPromotion(totalOrderPrice.getTotalPrice());
+            applyChristmasPromotion(visitDate.getDate());
+            applySpecialPromotion(visitDate.getDate());
+            applyWeekdayPromotion(orderResult, visitDate.getDate());
+            applyWeekendPromotion(orderResult, visitDate.getDate());
         }
         applyNotQualified();
     }

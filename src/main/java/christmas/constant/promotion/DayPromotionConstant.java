@@ -19,18 +19,14 @@ public enum DayPromotionConstant {
     public static int calculateWeekDayPromotion(EnumMap<MenuConstant, Integer> orderResults) {
         return orderResults.entrySet().stream()
                 .filter(entry -> entry.getKey().getType().equals(WEEKDAY_PROMOTION.message))
-                .mapToInt(entry -> {
-                    return entry.getValue() * WEEKDAY_PROMOTION.price;
-                })
+                .mapToInt(entry -> entry.getValue() * WEEKDAY_PROMOTION.price)
                 .sum();
     }
 
     public static int calculateWeekendPromotion(EnumMap<MenuConstant, Integer> orderResults) {
         return orderResults.entrySet().stream()
                 .filter(entry -> entry.getKey().getType().equals(WEEKEND_PROMOTION.message))
-                .mapToInt(entry -> {
-                    return entry.getValue() * WEEKEND_PROMOTION.price;
-                })
+                .mapToInt(entry -> entry.getValue() * WEEKEND_PROMOTION.price)
                 .sum();
     }
 }
