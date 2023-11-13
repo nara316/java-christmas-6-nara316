@@ -1,7 +1,6 @@
 package christmas.view;
 
 import static christmas.constant.ExceptionConstant.INPUT_IS_ESSENTIAL;
-import static christmas.constant.ExceptionConstant.VISIT_DATE_RANGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.converter.StringConverter;
@@ -13,9 +12,8 @@ public class InputView {
     private static final String REQUEST_MENU_AND_AMOUNT = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. "
             + "(e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
 
-    public int inputVisitDate() {
-        String visitDate = printMessageAndGetInput(REQUEST_VISIT_DATE);
-        return StringConverter.strToInt(visitDate, VISIT_DATE_RANGE.getMessage());
+    public String inputVisitDate() {
+        return printMessageAndGetInput(REQUEST_VISIT_DATE);
     }
 
     public String inputOrders() {

@@ -43,8 +43,8 @@ public class MainController {
     }
 
     private VisitDate inputVisitDate() {
-        int date = inputView.inputVisitDate();
-        return orderService.generateVisitDate(date);
+        String userInput = inputView.inputVisitDate();
+        return orderService.generateVisitDate(userInput);
     }
 
     private OrderResult inputOrders() {
