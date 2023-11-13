@@ -6,16 +6,16 @@ public class GiftPromotion {
 
     private final int giftDiscount;
 
-    private GiftPromotion(int totalPrice) {
-        this.giftDiscount = calculateGiftDiscount(totalPrice);
+    private GiftPromotion(int totalOrderPrice) {
+        this.giftDiscount = calculateGiftDiscount(totalOrderPrice);
     }
 
-    public static GiftPromotion from(int totalPrice) {
-        return new GiftPromotion(totalPrice);
+    public static GiftPromotion from(int totalOrderPrice) {
+        return new GiftPromotion(totalOrderPrice);
     }
 
-    private int calculateGiftDiscount(int totalPrice) {
-        return MenuConstant.checkGiftQualified(totalPrice);
+    private int calculateGiftDiscount(int totalOrderPrice) {
+        return MenuConstant.calculateGiftPrice(totalOrderPrice);
     }
 
     public int getGiftDiscount() {

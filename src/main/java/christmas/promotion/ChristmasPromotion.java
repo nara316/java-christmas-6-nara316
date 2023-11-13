@@ -9,23 +9,23 @@ public class ChristmasPromotion {
 
     private final int christmasDiscount;
 
-    private ChristmasPromotion(int date) {
-        this.christmasDiscount = calculateChristmasSale(date);
+    private ChristmasPromotion(int visitDate) {
+        this.christmasDiscount = calculateChristmasSale(visitDate);
     }
 
-    public static ChristmasPromotion from(int date) {
-        return new ChristmasPromotion(date);
+    public static ChristmasPromotion from(int visitDate) {
+        return new ChristmasPromotion(visitDate);
     }
 
-    private int calculateChristmasSale(int date) {
-        if (isChristmasQualified(date)) {
-            return PROMOTION_DISCOUNT.getNumber() + (date - 1) * CHRISTMAS_DISCOUNT.getNumber();
+    private int calculateChristmasSale(int visitDate) {
+        if (isChristmasQualified(visitDate)) {
+            return PROMOTION_DISCOUNT.getNumber() + (visitDate - 1) * CHRISTMAS_DISCOUNT.getNumber();
         }
         return PROMOTION_NOT_QUALIFIED.getNumber();
     }
 
-    private boolean isChristmasQualified(int date) {
-        return date <= CHRISTMAS_PROMOTION_DEADLINE.getNumber();
+    private boolean isChristmasQualified(int visitDate) {
+        return visitDate <= CHRISTMAS_PROMOTION_DEADLINE.getNumber();
     }
 
     public int getChristmasDiscount() {

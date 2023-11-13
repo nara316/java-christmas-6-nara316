@@ -59,7 +59,7 @@ public enum MenuConstant {
                 .sum();
     }
 
-    public static int checkGiftQualified(int totalPrice) {
+    public static int calculateGiftPrice(int totalPrice) {
         if (GIFT_STANDARD.getNumber() <= totalPrice) {
             return CHAMPAGNE.price;
         }

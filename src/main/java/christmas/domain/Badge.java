@@ -1,8 +1,8 @@
 package christmas.domain;
 
-import static christmas.constant.PromotionConstant.NOT_QUALIFIED;
+import static christmas.constant.promotion.PromotionConstant.NOT_QUALIFIED;
 
-import christmas.constant.BadgeConstant;
+import christmas.constant.promotion.BadgeConstant;
 
 public class Badge {
 

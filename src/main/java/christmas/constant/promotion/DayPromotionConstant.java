@@ -1,5 +1,6 @@
-package christmas.constant;
+package christmas.constant.promotion;
 
+import christmas.constant.MenuConstant;
 import java.util.EnumMap;
 
 public enum DayPromotionConstant {

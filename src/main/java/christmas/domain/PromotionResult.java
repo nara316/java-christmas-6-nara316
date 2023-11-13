@@ -4,7 +4,7 @@ import static christmas.constant.NumberConstant.PROMOTION_STANDARD;
 
 import christmas.constant.MenuConstant;
 import christmas.constant.NumberConstant;
-import christmas.constant.PromotionConstant;
+import christmas.constant.promotion.PromotionConstant;
 import christmas.promotion.ChristmasPromotion;
 import christmas.promotion.GiftPromotion;
 import christmas.promotion.SpecialPromotion;

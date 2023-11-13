@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.promotion;
 
 import java.util.Arrays;
 

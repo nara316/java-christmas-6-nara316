@@ -1,6 +1,6 @@
 package christmas.view;
 
-import christmas.constant.PromotionConstant;
+import christmas.constant.promotion.PromotionConstant;
 import christmas.domain.Badge;
 import christmas.domain.OrderResult;
 import christmas.domain.PromotionResult;

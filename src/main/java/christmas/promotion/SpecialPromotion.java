@@ -3,22 +3,22 @@ package christmas.promotion;
 import static christmas.constant.NumberConstant.PROMOTION_DISCOUNT;
 import static christmas.constant.NumberConstant.PROMOTION_NOT_QUALIFIED;
 
-import christmas.constant.SpecialDayConstant;
+import christmas.constant.promotion.SpecialDayConstant;
 
 public class SpecialPromotion {
 
     private final int specialDiscount;
 
-    private SpecialPromotion(int date) {
-        this.specialDiscount = calculateSpecialSale(date);
+    private SpecialPromotion(int visitDate) {
+        this.specialDiscount = calculateSpecialSale(visitDate);
     }
 
-    public static SpecialPromotion from(int date) {
-        return new SpecialPromotion(date);
+    public static SpecialPromotion from(int visitDate) {
+        return new SpecialPromotion(visitDate);
     }
 
-    private int calculateSpecialSale(int date) {
-        if (SpecialDayConstant.isSpecialDay(date)) {
+    private int calculateSpecialSale(int visitDate) {
+        if (SpecialDayConstant.isSpecialDay(visitDate)) {
             return PROMOTION_DISCOUNT.getNumber();
         }
         return PROMOTION_NOT_QUALIFIED.getNumber();
