@@ -1,6 +1,7 @@
 package christmas.constant;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum BadgeConstant {
 
@@ -20,10 +21,9 @@ public enum BadgeConstant {
         return label;
     }
 
-    public static BadgeConstant calculateBadge(int totalDiscount) {
+    public static Optional<BadgeConstant> calculateBadge(int totalDiscount) {
         return Arrays.stream(values())
                 .filter(badgeConstant -> totalDiscount >= badgeConstant.standard)
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 }

@@ -17,12 +17,9 @@ public class Badge {
     }
 
     private String generateBadge(int totalDiscount) {
-        BadgeConstant badgeConstant = BadgeConstant.calculateBadge(totalDiscount);
-
-        if (badgeConstant == null) {
-            return NOT_QUALIFIED.getLabel();
-        }
-        return badgeConstant.getLabel();
+        return BadgeConstant.calculateBadge(totalDiscount)
+                .map(BadgeConstant::getLabel)
+                .orElse(NOT_QUALIFIED.getLabel());
     }
 
     public String getLabel() {
