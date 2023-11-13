@@ -10,6 +10,15 @@ import org.junit.jupiter.api.Test;
 class OrdersTest {
 
     @Test
+    void 주문형식에_맞지않을경우_예외발생() {
+        String userOrder = "티본스테이크-10,타파스-a";
+
+        assertThatThrownBy(() -> Orders.from(userOrder))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(WRONG_ORDER.getMessage());
+    }
+
+    @Test
     void 총주문수량이_20초과일_경우_예외발생() {
         String userOrder = "티본스테이크-10,타파스-10,제로콜라-10";
 

@@ -24,5 +24,4 @@ class MenuTest {
         assertThatCode(() -> Menu.from(menuName))
                 .doesNotThrowAnyException();
     }
-
 }

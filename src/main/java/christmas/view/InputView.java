@@ -3,7 +3,6 @@ package christmas.view;
 import static christmas.constant.ExceptionConstant.INPUT_IS_ESSENTIAL;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.converter.StringConverter;
 
 public class InputView {
 
