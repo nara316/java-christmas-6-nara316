@@ -4,7 +4,7 @@ import christmas.domain.OrderResult;
 import christmas.domain.PromotionResult;
 import christmas.domain.TotalOrderPrice;
 import christmas.domain.VisitDate;
-import christmas.service.DiscountService;
+import christmas.service.PromotionService;
 import christmas.service.OrderService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -13,16 +13,16 @@ import java.util.function.Supplier;
 public class MainController {
 
     private final OrderService orderService;
-    private final DiscountService discountService;
+    private final PromotionService promotionService;
     private final InputView inputView;
     private final OutputView outputView;
 
     public MainController(
-            OrderService orderService, DiscountService discountService,
+            OrderService orderService, PromotionService promotionService,
             InputView inputView, OutputView outputView
     ) {
         this.orderService = orderService;
-        this.discountService = discountService;
+        this.promotionService = promotionService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -31,9 +31,9 @@ public class MainController {
         VisitDate visitDate = executeWithExceptionHandle(this::inputVisitDate);
         OrderResult orderResult = executeWithExceptionHandle(this::inputOrders);
         TotalOrderPrice totalOrderPrice = orderService.generateTotalPrice(orderResult);
-        PromotionResult promotionResult = discountService.generatePromotionResult(
+        PromotionResult promotionResult = promotionService.generatePromotionResult(
                 visitDate, totalOrderPrice, orderResult);
-        int totalDiscountPrice = discountService.calculateTotalDiscount(promotionResult);
+        int totalDiscountPrice = promotionService.calculateTotalDiscount(promotionResult);
 
         outputView.printDiscountPreview(visitDate);
         outputView.printOrderMenu(orderResult);

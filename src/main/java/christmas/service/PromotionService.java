@@ -5,7 +5,7 @@ import christmas.domain.PromotionResult;
 import christmas.domain.TotalOrderPrice;
 import christmas.domain.VisitDate;
 
-public class DiscountService {
+public class PromotionService {
 
     public PromotionResult generatePromotionResult(VisitDate visitDate, TotalOrderPrice totalPrice, OrderResult orderResult) {
         return PromotionResult.of(visitDate, totalPrice, orderResult);

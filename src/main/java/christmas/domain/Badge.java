@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static christmas.constant.promotion.PromotionConstant.NOT_QUALIFIED;
+import static christmas.constant.promotion.PromotionConstant.NOT_APPLIED;
 
 import christmas.constant.promotion.BadgeConstant;
 
@@ -19,7 +19,7 @@ public class Badge {
     private String generateBadge(int totalDiscount) {
         return BadgeConstant.calculateBadge(totalDiscount)
                 .map(BadgeConstant::getLabel)
-                .orElse(NOT_QUALIFIED.getLabel());
+                .orElse(NOT_APPLIED.getLabel());
     }
 
     public String getLabel() {

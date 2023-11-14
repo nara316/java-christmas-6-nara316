@@ -1,9 +1,9 @@
 package christmas.promotion;
 
-import static christmas.constant.NumberConstant.CHRISTMAS_DISCOUNT;
-import static christmas.constant.NumberConstant.CHRISTMAS_PROMOTION_DEADLINE;
-import static christmas.constant.NumberConstant.PROMOTION_DISCOUNT;
-import static christmas.constant.NumberConstant.PROMOTION_NOT_QUALIFIED;
+import static christmas.constant.NumberConstant.PROMOTION_CHRISTMAS_DISCOUNT;
+import static christmas.constant.NumberConstant.PROMOTION_CHRISTMAS_DISCOUNT_PER_DAY;
+import static christmas.constant.NumberConstant.PROMOTION_CHRISTMAS_DEADLINE;
+import static christmas.constant.NumberConstant.PROMOTION_NOT_APPLIED;
 
 public class ChristmasPromotion {
 
@@ -19,13 +19,14 @@ public class ChristmasPromotion {
 
     private int calculateChristmasSale(int visitDate) {
         if (isChristmasQualified(visitDate)) {
-            return PROMOTION_DISCOUNT.getNumber() + (visitDate - 1) * CHRISTMAS_DISCOUNT.getNumber();
+            return PROMOTION_CHRISTMAS_DISCOUNT.getNumber() +
+                    (visitDate - 1) * PROMOTION_CHRISTMAS_DISCOUNT_PER_DAY.getNumber();
         }
-        return PROMOTION_NOT_QUALIFIED.getNumber();
+        return PROMOTION_NOT_APPLIED.getNumber();
     }
 
     private boolean isChristmasQualified(int visitDate) {
-        return visitDate <= CHRISTMAS_PROMOTION_DEADLINE.getNumber();
+        return visitDate <= PROMOTION_CHRISTMAS_DEADLINE.getNumber();
     }
 
     public int getChristmasDiscount() {

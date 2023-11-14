@@ -10,7 +10,7 @@ public enum PromotionConstant {
     WEEKDAY("평일 할인"),
     WEEKEND("주말 할인"),
     GIFT("증정 이벤트"),
-    NOT_QUALIFIED("없음");
+    NOT_APPLIED("없음");
 
     private final String label;
 
@@ -19,13 +19,13 @@ public enum PromotionConstant {
     }
 
     public static String checkGiftQualified(PromotionResult promotionResult) {
-        if (promotionResult.getPromotionResult().containsKey(GIFT)) {
+        if (isGiftApplied(promotionResult)) {
             return MenuConstant.getGiftName() + " 1개";
         }
-        return NOT_QUALIFIED.label;
+        return NOT_APPLIED.label;
     }
 
-    public static boolean checkGiftApplied(PromotionResult promotionResult) {
+    public static boolean isGiftApplied(PromotionResult promotionResult) {
         return promotionResult.getPromotionResult().containsKey(GIFT);
     }
 

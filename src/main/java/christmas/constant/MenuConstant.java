@@ -1,7 +1,7 @@
 package christmas.constant;
 
 import static christmas.constant.NumberConstant.GIFT_STANDARD;
-import static christmas.constant.NumberConstant.PROMOTION_NOT_QUALIFIED;
+import static christmas.constant.NumberConstant.PROMOTION_NOT_APPLIED;
 
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -51,7 +51,7 @@ public enum MenuConstant {
                 .allMatch(menu -> menu.type.equals("drink") && menu.name.equals(menuName));
     }
 
-    public static int calculateTotalPrice(EnumMap<MenuConstant, Integer> orderResult) {
+    public static int calculateTotalOrderPrice(EnumMap<MenuConstant, Integer> orderResult) {
         return orderResult.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().price * entry.getValue())
                 .sum();
@@ -61,7 +61,7 @@ public enum MenuConstant {
         if (GIFT_STANDARD.getNumber() <= totalPrice) {
             return CHAMPAGNE.price;
         }
-        return PROMOTION_NOT_QUALIFIED.getNumber();
+        return PROMOTION_NOT_APPLIED.getNumber();
     }
 
     public static String getGiftName() {

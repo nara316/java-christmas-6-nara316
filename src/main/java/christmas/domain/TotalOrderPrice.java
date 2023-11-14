@@ -15,7 +15,7 @@ public class TotalOrderPrice {
     }
 
     private int generateOrderResult(OrderResult orderResult) {
-        return MenuConstant.calculateTotalPrice(orderResult.getOrderResult());
+        return MenuConstant.calculateTotalOrderPrice(orderResult.getOrderResult());
     }
 
     public int getTotalPrice() {

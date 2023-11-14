@@ -17,16 +17,18 @@ public enum DayPromotionConstant {
     }
 
     public static int calculateWeekDayPromotion(EnumMap<MenuConstant, Integer> orderResults) {
-        return orderResults.entrySet().stream()
-                .filter(entry -> entry.getKey().getType().equals(WEEKDAY_PROMOTION.message))
-                .mapToInt(entry -> entry.getValue() * WEEKDAY_PROMOTION.price)
-                .sum();
+        return calculateDayPromotion(orderResults, WEEKDAY_PROMOTION);
     }
 
     public static int calculateWeekendPromotion(EnumMap<MenuConstant, Integer> orderResults) {
+        return calculateDayPromotion(orderResults, WEEKEND_PROMOTION);
+    }
+
+    private static int calculateDayPromotion(
+            EnumMap<MenuConstant, Integer> orderResults, DayPromotionConstant dayPromotionConstant) {
         return orderResults.entrySet().stream()
-                .filter(entry -> entry.getKey().getType().equals(WEEKEND_PROMOTION.message))
-                .mapToInt(entry -> entry.getValue() * WEEKEND_PROMOTION.price)
+                .filter(entry -> entry.getKey().getType().equals(dayPromotionConstant.message))
+                .mapToInt(entry -> entry.getValue() * dayPromotionConstant.price)
                 .sum();
     }
 }

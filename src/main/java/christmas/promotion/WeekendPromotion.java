@@ -1,6 +1,6 @@
 package christmas.promotion;
 
-import static christmas.constant.NumberConstant.PROMOTION_NOT_QUALIFIED;
+import static christmas.constant.NumberConstant.PROMOTION_NOT_APPLIED;
 
 import christmas.constant.MenuConstant;
 import christmas.constant.promotion.DayPromotionConstant;
@@ -24,7 +24,7 @@ public class WeekendPromotion {
         if (isWeekendQualified(visitDate)) {
             return DayPromotionConstant.calculateWeekendPromotion(orderResult);
         }
-        return PROMOTION_NOT_QUALIFIED.getNumber();
+        return PROMOTION_NOT_APPLIED.getNumber();
     }
 
     private boolean isWeekendQualified(int visitDate) {

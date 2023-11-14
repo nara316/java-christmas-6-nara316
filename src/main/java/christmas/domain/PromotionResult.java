@@ -43,42 +43,42 @@ public class PromotionResult {
 
     private void applyGiftPromotion(int totalOrderPrice) {
         int giftSalePrice = GiftPromotion.from(totalOrderPrice).getGiftDiscount();
-        if (giftSalePrice > NumberConstant.PROMOTION_NOT_QUALIFIED.getNumber()) {
+        if (giftSalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
             promotionResult.put(PromotionConstant.GIFT, giftSalePrice);
         }
     }
 
     private void applyChristmasPromotion(int visitDate) {
         int christmasSalePrice = ChristmasPromotion.from(visitDate).getChristmasDiscount();
-        if (christmasSalePrice > NumberConstant.PROMOTION_NOT_QUALIFIED.getNumber()) {
+        if (christmasSalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
             promotionResult.put(PromotionConstant.CHRISTMAS, christmasSalePrice);
         }
     }
 
     private void applySpecialPromotion(int visitDate) {
         int specialSalePrice = SpecialPromotion.from(visitDate).getSpecialDiscount();
-        if (specialSalePrice > NumberConstant.PROMOTION_NOT_QUALIFIED.getNumber()) {
+        if (specialSalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
             promotionResult.put(PromotionConstant.SPECIAL, specialSalePrice);
         }
     }
 
     private void applyWeekdayPromotion(OrderResult orderResult, int visitDate) {
         int weekdaySalePrice = WeekdayPromotion.of(orderResult.getOrderResult(), visitDate).getWeekdayDiscount();
-        if (weekdaySalePrice > NumberConstant.PROMOTION_NOT_QUALIFIED.getNumber()) {
+        if (weekdaySalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
             promotionResult.put(PromotionConstant.WEEKDAY, weekdaySalePrice);
         }
     }
 
     private void applyWeekendPromotion(OrderResult orderResult, int visitDate) {
         int weekendSalePrice = WeekendPromotion.of(orderResult.getOrderResult(), visitDate).getWeekendDiscount();
-        if (weekendSalePrice > NumberConstant.PROMOTION_NOT_QUALIFIED.getNumber()) {
+        if (weekendSalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
             promotionResult.put(PromotionConstant.WEEKEND, weekendSalePrice);
         }
     }
 
     private void applyNotQualified() {
         if (promotionResult.isEmpty()) {
-         promotionResult.put(PromotionConstant.NOT_QUALIFIED, NumberConstant.PROMOTION_NOT_QUALIFIED.getNumber());
+         promotionResult.put(PromotionConstant.NOT_APPLIED, NumberConstant.PROMOTION_NOT_APPLIED.getNumber());
         }
     }
 
@@ -89,7 +89,7 @@ public class PromotionResult {
     }
 
     public int calculateTotalDiscountWithoutGift(PromotionResult promotionResult, int totalDiscountPrice) {
-        if (PromotionConstant.checkGiftApplied(promotionResult) == true) {
+        if (PromotionConstant.isGiftApplied(promotionResult)) {
             return totalDiscountPrice - MenuConstant.getGiftPrice();
         }
         return totalDiscountPrice;
