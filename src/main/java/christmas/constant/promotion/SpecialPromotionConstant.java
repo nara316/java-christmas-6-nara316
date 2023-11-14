@@ -2,7 +2,7 @@ package christmas.constant.promotion;
 
 import java.util.Arrays;
 
-public enum SpecialDayConstant {
+public enum SpecialPromotionConstant {
 
     FIRST_SUN(3),
     SECOND_SUN(10),
@@ -13,7 +13,7 @@ public enum SpecialDayConstant {
 
     private final int day;
 
-    SpecialDayConstant(int day) {
+    SpecialPromotionConstant(int day) {
         this.day = day;
     }
 

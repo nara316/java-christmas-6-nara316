@@ -8,16 +8,16 @@ public class Badge {
 
     private final String label;
 
-    private Badge(int totalDiscount) {
-        this.label = generateBadge(totalDiscount);
+    private Badge(int totalDiscountPrice) {
+        this.label = generateBadge(totalDiscountPrice);
     }
 
-    public static Badge from(int totalDiscount) {
-        return new Badge(totalDiscount);
+    public static Badge from(int totalDiscountPrice) {
+        return new Badge(totalDiscountPrice);
     }
 
-    private String generateBadge(int totalDiscount) {
-        return BadgeConstant.calculateBadge(totalDiscount)
+    private String generateBadge(int totalDiscountPrice) {
+        return BadgeConstant.calculateBadge(totalDiscountPrice)
                 .map(BadgeConstant::getLabel)
                 .orElse(NOT_APPLIED.getLabel());
     }

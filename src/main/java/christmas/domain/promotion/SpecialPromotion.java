@@ -1,9 +1,9 @@
-package christmas.promotion;
+package christmas.domain.promotion;
 
 import static christmas.constant.NumberConstant.PROMOTION_NOT_APPLIED;
 import static christmas.constant.NumberConstant.PROMOTION_SPECIAL_DISCOUNT;
 
-import christmas.constant.promotion.SpecialDayConstant;
+import christmas.constant.promotion.SpecialPromotionConstant;
 
 public class SpecialPromotion {
 
@@ -18,7 +18,7 @@ public class SpecialPromotion {
     }
 
     private int calculateSpecialSale(int visitDate) {
-        if (SpecialDayConstant.isSpecialDay(visitDate)) {
+        if (SpecialPromotionConstant.isSpecialDay(visitDate)) {
             return PROMOTION_SPECIAL_DISCOUNT.getNumber();
         }
         return PROMOTION_NOT_APPLIED.getNumber();

@@ -3,14 +3,12 @@ package christmas.view;
 import static christmas.constant.NumberConstant.PROMOTION_NOT_APPLIED;
 
 import christmas.constant.MenuConstant;
-import christmas.constant.NumberConstant;
 import christmas.constant.promotion.PromotionConstant;
-import christmas.domain.Badge;
 import java.util.EnumMap;
 
 public class OutputView {
 
-    private static final String DISCOUNT_PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
+    private static final String ORDER_PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
     private static final String ORDER_MENU_MESSAGE = "<주문 메뉴>";
     private static final String TOTAL_ORDER_PRICE_MESSAGE = "<할인 전 총주문 금액>\n" + "%,d원\n";
     private static final String GIFT_MENU_MESSAGE = "<증정 메뉴>";
@@ -20,8 +18,8 @@ public class OutputView {
     private static final String EVENT_BADGE_MESSAGE = "<12월 이벤트 배지>\n";
 
 
-    public void printDiscountPreview(int visitDate) {
-        System.out.printf(DISCOUNT_PREVIEW_MESSAGE, visitDate);
+    public void printOrderPreview(int visitDate) {
+        System.out.printf(ORDER_PREVIEW_MESSAGE, visitDate);
     }
 
     public void printOrderMenu(EnumMap<MenuConstant, Integer> orderResult) {
@@ -62,7 +60,7 @@ public class OutputView {
         System.out.printf(TOTAL_ORDER_PRICE_AFTER_BENEFIT_MESSAGE, totalOrderPriceAfterDiscount);
     }
 
-    public void printEventBadge(int totalDiscountPrice) {
-        System.out.println(EVENT_BADGE_MESSAGE + Badge.from(totalDiscountPrice).getLabel());
+    public void printEventBadge(String badge) {
+        System.out.println(EVENT_BADGE_MESSAGE + badge);
     }
 }

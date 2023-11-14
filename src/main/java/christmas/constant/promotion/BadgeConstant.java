@@ -21,9 +21,9 @@ public enum BadgeConstant {
         return label;
     }
 
-    public static Optional<BadgeConstant> calculateBadge(int totalDiscount) {
+    public static Optional<BadgeConstant> calculateBadge(int totalDiscountPrice) {
         return Arrays.stream(values())
-                .filter(badgeConstant -> totalDiscount >= badgeConstant.standard)
+                .filter(badgeConstant -> totalDiscountPrice >= badgeConstant.standard)
                 .findFirst();
     }
 }

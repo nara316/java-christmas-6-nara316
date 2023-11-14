@@ -1,4 +1,4 @@
-package christmas.promotion;
+package christmas.domain.promotion;
 
 import static christmas.constant.NumberConstant.PROMOTION_CHRISTMAS_DISCOUNT;
 import static christmas.constant.NumberConstant.PROMOTION_CHRISTMAS_DISCOUNT_PER_DAY;

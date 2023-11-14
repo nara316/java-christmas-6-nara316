@@ -1,10 +1,10 @@
 package christmas.promotion;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.domain.OrderResult;
 import christmas.domain.order.Orders;
+import christmas.domain.promotion.WeekdayPromotion;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

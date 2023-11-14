@@ -1,6 +1,6 @@
 package christmas.constant;
 
-import static christmas.constant.NumberConstant.GIFT_STANDARD;
+import static christmas.constant.NumberConstant.GIFT_APPLIED_STANDARD;
 import static christmas.constant.NumberConstant.PROMOTION_NOT_APPLIED;
 
 import java.util.Arrays;
@@ -58,7 +58,7 @@ public enum MenuConstant {
     }
 
     public static int calculateGiftPrice(int totalPrice) {
-        if (GIFT_STANDARD.getNumber() <= totalPrice) {
+        if (GIFT_APPLIED_STANDARD.getNumber() <= totalPrice) {
             return CHAMPAGNE.price;
         }
         return PROMOTION_NOT_APPLIED.getNumber();

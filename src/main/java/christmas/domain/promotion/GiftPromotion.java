@@ -1,4 +1,4 @@
-package christmas.promotion;
+package christmas.domain.promotion;
 
 import christmas.constant.MenuConstant;
 

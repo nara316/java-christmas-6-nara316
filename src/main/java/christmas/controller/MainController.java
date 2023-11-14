@@ -49,7 +49,7 @@ public class MainController {
     }
 
     private void printOrderInfo(VisitDate visitDate, OrderResult orderResult, TotalOrderPrice totalOrderPrice) {
-        outputView.printDiscountPreview(visitDate.getDate());
+        outputView.printOrderPreview(visitDate.getDate());
         outputView.printOrderMenu(orderResult.getOrderResult());
         outputView.printTotalOrderPrice(totalOrderPrice.getTotalPrice());
     }
@@ -60,12 +60,13 @@ public class MainController {
                 promotionResult.calculateTotalDiscountWithoutGift(promotionResult, totalDiscountPrice);
         int totalOrderPriceAfterDiscount =
                 totalOrderPrice.calculateTotalOrderPriceAfterPromotion(totalDiscountWithoutGift);
+        String badge = promotionService.generateBadge(totalDiscountPrice).getLabel();
 
         outputView.printGiftMenu(promotionResult.getPromotionResult());
         outputView.printBenefitsDetails(promotionResult.getPromotionResult());
         outputView.printTotalBenefitPrice(totalDiscountPrice);
         outputView.printTotalOrderPriceAfterBenefit(totalOrderPriceAfterDiscount);
-        outputView.printEventBadge(totalDiscountPrice);
+        outputView.printEventBadge(badge);
     }
 
     private static <T> T executeWithExceptionHandle (final Supplier<T> supplier) {
