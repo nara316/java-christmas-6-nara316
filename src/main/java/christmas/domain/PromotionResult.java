@@ -1,8 +1,8 @@
 package christmas.domain;
 
+import static christmas.constant.NumberConstant.PROMOTION_NOT_APPLIED;
 import static christmas.constant.NumberConstant.PROMOTION_STANDARD;
 
-import christmas.constant.NumberConstant;
 import christmas.constant.promotion.PromotionConstant;
 import christmas.domain.promotion.ChristmasPromotion;
 import christmas.domain.promotion.GiftPromotion;
@@ -31,57 +31,39 @@ public class PromotionResult {
 
     private void applyAllPromotion(VisitDate visitDate, TotalOrderPrice totalOrderPrice, OrderResult orderResult) {
         if (PROMOTION_STANDARD.getNumber() <= totalOrderPrice.getTotalPrice()) {
-            applyGiftPromotion(totalOrderPrice.getTotalPrice());
-            applyChristmasPromotion(visitDate.getDate());
-            applySpecialPromotion(visitDate.getDate());
-            applyWeekdayPromotion(orderResult, visitDate.getDate());
-            applyWeekendPromotion(orderResult, visitDate.getDate());
+            applyPromotion(PromotionConstant.GIFT, () ->
+                    GiftPromotion.from(totalOrderPrice.getTotalPrice()).getGiftDiscount());
+            applyPromotion(PromotionConstant.CHRISTMAS, () ->
+                    ChristmasPromotion.from(visitDate.getDate()).getChristmasDiscount());
+            applyPromotion(PromotionConstant.SPECIAL, () ->
+                    SpecialPromotion.from(visitDate.getDate()).getSpecialDiscount());
+            applyPromotion(PromotionConstant.WEEKDAY, () ->
+                    WeekdayPromotion.of(orderResult.getOrderResult(), visitDate.getDate()).getWeekdayDiscount());
+            applyPromotion(PromotionConstant.WEEKEND, () ->
+                    WeekendPromotion.of(orderResult.getOrderResult(), visitDate.getDate()).getWeekendDiscount());
         }
         applyNotQualified();
     }
 
-    private void applyGiftPromotion(int totalOrderPrice) {
-        int giftSalePrice = GiftPromotion.from(totalOrderPrice).getGiftDiscount();
-        if (giftSalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
-            promotionResult.put(PromotionConstant.GIFT, giftSalePrice);
-        }
-    }
-
-    private void applyChristmasPromotion(int visitDate) {
-        int christmasSalePrice = ChristmasPromotion.from(visitDate).getChristmasDiscount();
-        if (christmasSalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
-            promotionResult.put(PromotionConstant.CHRISTMAS, christmasSalePrice);
-        }
-    }
-
-    private void applySpecialPromotion(int visitDate) {
-        int specialSalePrice = SpecialPromotion.from(visitDate).getSpecialDiscount();
-        if (specialSalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
-            promotionResult.put(PromotionConstant.SPECIAL, specialSalePrice);
-        }
-    }
-
-    private void applyWeekdayPromotion(OrderResult orderResult, int visitDate) {
-        int weekdaySalePrice = WeekdayPromotion.of(orderResult.getOrderResult(), visitDate).getWeekdayDiscount();
-        if (weekdaySalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
-            promotionResult.put(PromotionConstant.WEEKDAY, weekdaySalePrice);
-        }
-    }
-
-    private void applyWeekendPromotion(OrderResult orderResult, int visitDate) {
-        int weekendSalePrice = WeekendPromotion.of(orderResult.getOrderResult(), visitDate).getWeekendDiscount();
-        if (weekendSalePrice > NumberConstant.PROMOTION_NOT_APPLIED.getNumber()) {
-            promotionResult.put(PromotionConstant.WEEKEND, weekendSalePrice);
+    private void applyPromotion(PromotionConstant promotionConstant, DiscountCalculator discountCalculator) {
+        int discountPrice = discountCalculator.calculateDiscount();
+        if (discountPrice > PROMOTION_NOT_APPLIED.getNumber()) {
+            promotionResult.put(promotionConstant, discountPrice);
         }
     }
 
     private void applyNotQualified() {
         if (promotionResult.isEmpty()) {
-         promotionResult.put(PromotionConstant.NOT_APPLIED, NumberConstant.PROMOTION_NOT_APPLIED.getNumber());
+         promotionResult.put(PromotionConstant.NOT_APPLIED, PROMOTION_NOT_APPLIED.getNumber());
         }
     }
 
     public EnumMap<PromotionConstant, Integer> getPromotionResult() {
         return promotionResult;
+    }
+
+    @FunctionalInterface
+    private interface DiscountCalculator {
+        int calculateDiscount();
     }
 }
