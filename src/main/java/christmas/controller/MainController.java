@@ -33,16 +33,9 @@ public class MainController {
         TotalOrderPrice totalOrderPrice = orderService.generateTotalPrice(orderResult);
         PromotionResult promotionResult = promotionService.generatePromotionResult(
                 visitDate, totalOrderPrice, orderResult);
-        int totalDiscountPrice = promotionService.calculateTotalDiscount(promotionResult);
 
-        outputView.printDiscountPreview(visitDate);
-        outputView.printOrderMenu(orderResult);
-        outputView.printTotalOrderPrice(totalOrderPrice);
-        outputView.printGiftMenu(promotionResult);
-        outputView.printBenefitsDetails(promotionResult);
-        outputView.printTotalBenefitPrice(totalDiscountPrice);
-        outputView.printTotalOrderPriceAfterBenefit(promotionResult, totalOrderPrice);
-        outputView.printEventBadge(totalDiscountPrice);
+        printOrderInfo(visitDate, orderResult, totalOrderPrice);
+        printPromotionInfo(promotionResult, totalOrderPrice);
     }
 
     private VisitDate inputVisitDate() {
@@ -53,6 +46,26 @@ public class MainController {
     private OrderResult inputOrders() {
         String userInput = inputView.inputOrders();
         return orderService.generateOrders(userInput);
+    }
+
+    private void printOrderInfo(VisitDate visitDate, OrderResult orderResult, TotalOrderPrice totalOrderPrice) {
+        outputView.printDiscountPreview(visitDate.getDate());
+        outputView.printOrderMenu(orderResult.getOrderResult());
+        outputView.printTotalOrderPrice(totalOrderPrice.getTotalPrice());
+    }
+
+    private void printPromotionInfo(PromotionResult promotionResult, TotalOrderPrice totalOrderPrice) {
+        int totalDiscountPrice = promotionResult.calculateTotalDiscount();
+        int totalDiscountWithoutGift =
+                promotionResult.calculateTotalDiscountWithoutGift(promotionResult, totalDiscountPrice);
+        int totalOrderPriceAfterDiscount =
+                totalOrderPrice.calculateTotalOrderPriceAfterPromotion(totalDiscountWithoutGift);
+
+        outputView.printGiftMenu(promotionResult.getPromotionResult());
+        outputView.printBenefitsDetails(promotionResult.getPromotionResult());
+        outputView.printTotalBenefitPrice(totalDiscountPrice);
+        outputView.printTotalOrderPriceAfterBenefit(totalOrderPriceAfterDiscount);
+        outputView.printEventBadge(totalDiscountPrice);
     }
 
     private static <T> T executeWithExceptionHandle (final Supplier<T> supplier) {

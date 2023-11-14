@@ -1,7 +1,7 @@
 package christmas.constant.promotion;
 
 import christmas.constant.MenuConstant;
-import christmas.domain.PromotionResult;
+import java.util.EnumMap;
 
 public enum PromotionConstant {
 
@@ -18,15 +18,15 @@ public enum PromotionConstant {
         this.label = label;
     }
 
-    public static String checkGiftQualified(PromotionResult promotionResult) {
+    public static String checkGiftQualified(EnumMap<PromotionConstant, Integer> promotionResult) {
         if (isGiftApplied(promotionResult)) {
             return MenuConstant.getGiftName() + " 1개";
         }
         return NOT_APPLIED.label;
     }
 
-    public static boolean isGiftApplied(PromotionResult promotionResult) {
-        return promotionResult.getPromotionResult().containsKey(GIFT);
+    public static boolean isGiftApplied(EnumMap<PromotionConstant, Integer> promotionResult) {
+        return promotionResult.containsKey(GIFT);
     }
 
     public String getLabel() {

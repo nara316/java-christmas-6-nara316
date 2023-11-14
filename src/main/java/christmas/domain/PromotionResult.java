@@ -89,7 +89,7 @@ public class PromotionResult {
     }
 
     public int calculateTotalDiscountWithoutGift(PromotionResult promotionResult, int totalDiscountPrice) {
-        if (PromotionConstant.isGiftApplied(promotionResult)) {
+        if (PromotionConstant.isGiftApplied(promotionResult.getPromotionResult())) {
             return totalDiscountPrice - MenuConstant.getGiftPrice();
         }
         return totalDiscountPrice;

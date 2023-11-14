@@ -18,6 +18,10 @@ public class TotalOrderPrice {
         return MenuConstant.calculateTotalOrderPrice(orderResult.getOrderResult());
     }
 
+    public int calculateTotalOrderPriceAfterPromotion(int totalDiscountPriceWithoutGift) {
+        return totalPrice - totalDiscountPriceWithoutGift;
+    }
+
     public int getTotalPrice() {
         return totalPrice;
     }

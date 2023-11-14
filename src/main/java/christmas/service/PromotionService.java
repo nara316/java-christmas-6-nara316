@@ -10,8 +10,4 @@ public class PromotionService {
     public PromotionResult generatePromotionResult(VisitDate visitDate, TotalOrderPrice totalPrice, OrderResult orderResult) {
         return PromotionResult.of(visitDate, totalPrice, orderResult);
     }
-
-    public int calculateTotalDiscount(PromotionResult promotionResult) {
-        return promotionResult.calculateTotalDiscount();
-    }
 }
