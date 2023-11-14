@@ -2,7 +2,6 @@ package christmas.domain;
 
 import static christmas.constant.NumberConstant.PROMOTION_STANDARD;
 
-import christmas.constant.MenuConstant;
 import christmas.constant.NumberConstant;
 import christmas.constant.promotion.PromotionConstant;
 import christmas.domain.promotion.ChristmasPromotion;
@@ -80,19 +79,6 @@ public class PromotionResult {
         if (promotionResult.isEmpty()) {
          promotionResult.put(PromotionConstant.NOT_APPLIED, NumberConstant.PROMOTION_NOT_APPLIED.getNumber());
         }
-    }
-
-    public int calculateTotalDiscount() {
-        return promotionResult.values().stream()
-                .mapToInt(Integer::intValue)
-                .sum();
-    }
-
-    public int calculateTotalDiscountWithoutGift(PromotionResult promotionResult, int totalDiscountPrice) {
-        if (PromotionConstant.isGiftApplied(promotionResult.getPromotionResult())) {
-            return totalDiscountPrice - MenuConstant.getGiftPrice();
-        }
-        return totalDiscountPrice;
     }
 
     public EnumMap<PromotionConstant, Integer> getPromotionResult() {

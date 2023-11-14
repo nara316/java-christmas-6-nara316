@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.domain.OrderResult;
 import christmas.domain.PromotionResult;
+import christmas.domain.TotalDiscountPrice;
 import christmas.domain.TotalOrderPrice;
 import christmas.domain.VisitDate;
 import christmas.service.PromotionService;
@@ -55,16 +56,15 @@ public class MainController {
     }
 
     private void printPromotionInfo(PromotionResult promotionResult, TotalOrderPrice totalOrderPrice) {
-        int totalDiscountPrice = promotionResult.calculateTotalDiscount();
-        int totalDiscountWithoutGift =
-                promotionResult.calculateTotalDiscountWithoutGift(promotionResult, totalDiscountPrice);
+        TotalDiscountPrice totalDiscountPrice = promotionService.generateTotalDiscountPrice(promotionResult);
+        int totalDiscountWithoutGift = totalDiscountPrice.calculateTotalDiscountWithoutGift(promotionResult);
         int totalOrderPriceAfterDiscount =
                 totalOrderPrice.calculateTotalOrderPriceAfterPromotion(totalDiscountWithoutGift);
         String badge = promotionService.generateBadge(totalDiscountPrice).getLabel();
 
         outputView.printGiftMenu(promotionResult.getPromotionResult());
         outputView.printBenefitsDetails(promotionResult.getPromotionResult());
-        outputView.printTotalBenefitPrice(totalDiscountPrice);
+        outputView.printTotalBenefitPrice(totalDiscountPrice.getTotalPrice());
         outputView.printTotalOrderPriceAfterBenefit(totalOrderPriceAfterDiscount);
         outputView.printEventBadge(badge);
     }
