@@ -46,7 +46,7 @@ class OrdersTest {
 
     @Test
     void 음료만_주문할_경우_예외발생() {
-        String userOrder = "제코콜라-10,레드와인-4";
+        String userOrder = "제로콜라-1,레드와인-1";
 
         assertThatThrownBy(() -> Orders.from(userOrder))
                 .isInstanceOf(IllegalArgumentException.class)

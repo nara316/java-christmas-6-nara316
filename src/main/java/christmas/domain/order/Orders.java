@@ -6,7 +6,6 @@ import static christmas.constant.StringConstant.DIVISION_MENU_AND_QUANTITY;
 import static christmas.constant.StringConstant.DIVISION_ORDERS;
 import static christmas.converter.StringConverter.strToInt;
 
-import christmas.constant.ExceptionConstant;
 import christmas.constant.MenuConstant;
 import java.util.Arrays;
 import java.util.HashSet;

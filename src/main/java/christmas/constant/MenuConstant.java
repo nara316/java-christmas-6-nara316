@@ -48,7 +48,7 @@ public enum MenuConstant {
 
     public static boolean isContainDrink(String menuName) {
         return Arrays.stream(values())
-                .allMatch(menu -> menu.type.equals("drink") && menu.name.equals(menuName));
+                .anyMatch(menu -> menu.type.equals("drink") && menu.name.equals(menuName));
     }
 
     public static int calculateTotalOrderPrice(EnumMap<MenuConstant, Integer> orderResult) {
